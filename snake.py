@@ -1,5 +1,6 @@
 from turtle import *
-from random import randrange
+from random import randrange, choice
+import random
 from freegames import square, vector
 
 food = vector(0, 0)
@@ -17,15 +18,19 @@ def inside(head):
 
 def move():
     "Move snake forward one segment."
-    head = snake[-1].copy()
-    head.move(aim)
+    head = snake[-1].copy() 
+    head.move(aim) 
+    food.move(vector(choice([-10, 0, 10]), choice([-10, 0, 10])))
 
     if not inside(head) or head in snake:
         square(head.x, head.y, 9, 'red')
         update()
         return
+    elif not inside(food):
+        food.x = randrange(-15, 15) * 10
+        food.y = randrange(-15, 15) * 10
 
-    snake.append(head)
+    snake.append(head) 
 
     if head == food:
         print('Snake:', len(snake))
