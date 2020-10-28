@@ -20,6 +20,8 @@ def move():
     "Move snake forward one segment."
     head = snake[-1].copy() 
     head.move(aim) 
+    head = snake[-1].copy() 
+    head.move(aim) 
     food.move(vector(choice([-10, 0, 10]), choice([-10, 0, 10])))
 
     if not inside(head) or head in snake:
